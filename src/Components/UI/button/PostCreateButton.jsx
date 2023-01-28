@@ -3,7 +3,7 @@ import classes from './MyButton.module.css';
 
 const PostCreateButton = ({children, ...props}) => {
     return (
-        <button {...props} className={classes.createPostButton}>
+        <button onClick={props.createpost} className={classes.createPostButton}>
             {children}
         </button>
     );

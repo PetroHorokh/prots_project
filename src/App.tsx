@@ -53,12 +53,8 @@ function App() {
 
             ]
         },
-        ]
+        ]);
 
-    );
-
-    const newTopic = useRef();
-    const newDiscussion = useRef();
 
     const AddNewPost = () => {
 
@@ -75,18 +71,20 @@ function App() {
                 ]
         }
 
-        for (let i = 0; i < posts.length; i++) {
-
-            if (posts[i].topic === newPost.topic) {
-                posts[i].discussions = [...posts[i].discussions, newPost.discussions[0]]
-                flag = true
+        const tempPosts = [...posts]
+        for (let i = 0; i < tempPosts.length; i++) {
+            if (tempPosts[i].topic === newPost.topic) {
+                 tempPosts[i].discussions = [...tempPosts[i].discussions, newPost.discussions[0]]
+                 flag = true
             }
         }
         if(!flag){
             setPosts([...posts, newPost])
         }
 
-        //console.log(posts)
+        setPosts(tempPosts)
+
+        console.log(posts)
     }
 
     return (

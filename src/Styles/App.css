@@ -51,7 +51,7 @@
 }
 
 .PostScroller::-webkit-scrollbar{
-    width: 2px;
+    width: 4px;
 }
 
 .PostScroller::-webkit-scrollbar-track {

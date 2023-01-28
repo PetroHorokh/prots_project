@@ -7,7 +7,7 @@ const PostList = (props) => {
             <h3>{props.title}</h3>
             <div className="PostScroller">
                 {
-                    props.posts.map((post, index) => <PostItem key={index*2} post={post}/>)
+                    props.posts.map((post, index) => <PostItem key={index} post={post}/>)
                 }
             </div>
 

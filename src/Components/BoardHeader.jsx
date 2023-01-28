@@ -13,7 +13,7 @@ const BoardHeader = (props) => {
                 <SearchButton><i className="search icon"></i></SearchButton>
             </div>
 
-            <PostCreateButton createpost={props.createpost}>{props.buttonText}</PostCreateButton>
+            <PostCreateButton createpost={props.createpost} >{props.buttonText}</PostCreateButton>
         </div>
     );
 };
