@@ -7,7 +7,7 @@
     margin: 5px 10px;
 }
 
-.createPostButton{
+.createPostButtonMockActive{
     padding: 5px 15px;
     font-size: 14px;
     background-color: transparent;
@@ -16,12 +16,41 @@
     margin: 5px 10px;
     border-radius: 20px;
 }
-
-.searchButton{
+.createPostButtonMockInactive{
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: black;
+    color: white;
     border: 1px solid grey;
+    cursor: pointer;
+    margin: 5px 10px;
     border-radius: 20px;
-    width: 30px;
-    height: 30px;
-    padding-left: 3px;
-    background: transparent;
+}
+.createPostButton{
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid grey;
+    cursor: pointer;
+    margin: 25px 0px 0px 0px;
+    border-radius: 20px;
+}
+
+.createPostButton:hover{
+    background-color: black;
+    color: white;
+}
+
+.BoardButton{
+    background-color: white;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.BoardButton:hover{
+    background-color: black;
+    color: white;
 }

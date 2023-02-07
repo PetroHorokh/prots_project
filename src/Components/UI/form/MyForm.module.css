@@ -1,0 +1,7 @@
+.PostCreateForm{
+    width: 450px;
+    border: 1px solid grey;
+    margin: 20px auto;
+    padding: 10px 0px 30px 10px;
+    border-radius: 20px;
+}

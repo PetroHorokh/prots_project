@@ -1,19 +1,13 @@
 import React from 'react';
-import PostCreateButton from "./UI/button/PostCreateButton";
+import PostCreateButtonMock from "./UI/button/PostCreateButtonMock";
 import SearchInput from "./UI/input/SearchInput";
-import SearchButton from "./UI/button/SearchButton";
 
-const BoardHeader = (props) => {
+const BoardHeader = ({...props}) => {
     return (
         <div className="BoardHeader">
-            <h1>{props.title}</h1>
-
-            <div>
-                <SearchInput placeholder="Search..."/>
-                <SearchButton><i className="search icon"></i></SearchButton>
-            </div>
-
-            <PostCreateButton createpost={props.createpost} >{props.buttonText}</PostCreateButton>
+            <h1>Board</h1>
+            <SearchInput value={props.searchValue} onChange={e => props.setSearchValue(e.target.value)} placeholder="Search..."/>
+            <PostCreateButtonMock isCreatePost={props.isCreatePost} onClick={e=>props.setIsCreatePost(!props.isCreatePost)}>Create thread</PostCreateButtonMock>
         </div>
     );
 };

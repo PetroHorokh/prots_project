@@ -1,0 +1,6 @@
+.CreatePostTextarea{
+    resize: none;
+    width: 400px;
+    height: 70px;
+    border: 1px solid grey;
+}
