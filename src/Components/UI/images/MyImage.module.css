@@ -15,3 +15,19 @@
     border-radius: 10px;
 }
 
+.ChatImageEmpty{
+    margin: 5px 0 0 20px;
+    border: black 1px solid;
+    width: 120px;
+    height: 120px;
+    padding: 30px 25px;
+    border-radius: 10px;
+}
+
+.ChatImage{
+    height: 120px;
+    width: 120px;
+    margin: 5px 0 0 20px;
+    border-radius: 10px;
+    border: black 1px solid;
+}

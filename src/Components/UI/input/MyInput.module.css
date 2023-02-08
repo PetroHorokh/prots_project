@@ -36,9 +36,10 @@
 }
 
 .RTEHeaderInput{
+    overflow-y: scroll;
     width: 500px;
     height: 200px;
-    padding: 10px;
+    padding: 20px;
     cursor: pointer;
     margin: 10px auto;
     border-radius: 10px;

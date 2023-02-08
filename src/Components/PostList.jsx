@@ -11,7 +11,7 @@ const PostList = (props) => {
             {/*Рендер полів для переходу на пости*/}
             <div className="PostScroller">
                 {
-                    props.posts.map(post => <PostItem key={post.id} id={post.id} post={post} OpenPost={props.OpenPost}/>)
+                    props.posts.sort(function (a,b){return new Date(b.date) - new Date(a.date)}).map(post => <PostItem key={post.id} id={post.id} post={post} OpenPost={props.OpenPost}/>)
                 }
             </div>
 

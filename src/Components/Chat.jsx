@@ -1,30 +1,19 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ChatMassageInput from "./UI/input/ChatMassageInput";
 import ChatElement from "./ChatElement";
+import axios from "axios";
 
-const Chat = () => {
+const Chat = (props) => {
 
-    const [Massages,setMassages] = useState([
-        {
-            id: 1,
-            text: 'First massage',
-            date: '2015-03-25T12:02:00Z',
-        },
-        {
-            id: 2,
-            text: 'Second massage',
-            date: '2015-03-25T12:03:00Z',
-        },
-        {
-            id: 3,
-            text: 'Third massage',
-            date: '2015-03-25T12:04:00Z',
-        }
-        ]);
+    const [Massages,setMassages] = useState([]);
+
+    useEffect(() => {
+        axios.get("https://localhost:44348/api/Posts/" + props.id).then(elem => setMassages(elem.data))
+    }, [Massages]);
 
     return (
         <div className="Chat">
-            <ChatMassageInput></ChatMassageInput>
+            <ChatMassageInput id={props.id}></ChatMassageInput>
 
             {
                 Massages.map(

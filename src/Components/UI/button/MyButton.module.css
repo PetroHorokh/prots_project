@@ -54,3 +54,17 @@
     background-color: black;
     color: white;
 }
+
+.CreateComment{
+    margin: 40px auto;
+    display: flex;
+    padding: 15px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: black 1px solid;
+    cursor: pointer;
+}
+.CreateComment:hover{
+    background: black;
+    color: white;
+}

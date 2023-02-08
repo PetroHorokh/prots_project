@@ -3,66 +3,19 @@ import "./Styles/App.css"
 import Board from "./Components/Board";
 import Post from "./Components/Post";
 import axios from "axios";
-
-axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+import moment from 'moment';
 
 function App() {
 
     //Використання хуків
 
-    //повний пост
-    const [fullPosts, setFullPosts] = useState([
-        {
-            id:'1',
-            title:'Naruto',
-            date:'2015-03-25T12:00:00Z',
-            author:"you",
-            message:'This is post about Naruto',
-            image:"http://127.0.0.1:8887/Naruto.jpg"
-        },
-        {
-            id:'2',
-            title:'Canada',
-            date:'2015-03-25T12:00:00Z',
-            author:"me",
-            message:'This is post about Canada',
-            image:""
-        },
-        {
-            id:'3',
-            title:'DXD',
-            date:'2015-03-25T12:00:00Z',
-            author:"me",
-            message:'This is post about DXD',
-            image:"http://127.0.0.1:8887/temp.webp"
-        }
-    ])
-
     //Перемикання між сторінками
     const [pages, setPages] = useState('board')
 
-    //id поста, який відкривається для перегляду
-    const [pageOpenId, setPageOpenId] = useState('')
-
     //Коротка інформація по постах
-    const [posts, setPosts] = useState([
-        {
-            id:'1',
-            topic:'Anime',
-            title:'Naruto'
-        },
-        {
-            id:'2',
-            topic:'Countries',
-            title:'Canada'
-        },
-        {
-            id:'3',
-            topic:'Anime',
-            title:'DXD'
-        }
+    const [posts, setPosts] = useState([])
 
-        ])
+    const [postIdToOpen, setPostIdToOpen] = useState(0)
 
     //створення нового поста
     const [createPostTopic, setCreatePostTopic] = useState('')
@@ -71,58 +24,36 @@ function App() {
     const [createPostDescribtion, setCreatePostDescribtion] = useState('')
     const [createPostImage, setCreatePostImage] = useState('')
 
-    //Посилання на файл
-    const [fileDataURL, setFileDataURL] = useState('');
-
     //Функції
 
     //Відкриття поста
-    const OpenPost = (PostToOpen: string) => {
-
+    const OpenPost = (PostToOpen: number) => {
         setPages('post')
-        setPageOpenId(PostToOpen)
+        setPostIdToOpen(PostToOpen)
     }
 
     //Закриття поста
     const ClosePost = () => {
         setPages('board')
-        setPageOpenId('')
     }
 
     //Хук useEffect
     useEffect(() => {
-        let fileReader:any, isCancel = false;
-        if (createPostImage) {
-            fileReader = new FileReader();
-            fileReader.onload = (e:any) => {
-                const { result } = e.target;
-                if (result && !isCancel) {
-                    setFileDataURL(result)
-                }
-            }
-            fileReader.readAsDataURL(createPostImage);
-        }
-        return () => {
-            isCancel = true;
-            if (fileReader && fileReader.readyState === 1) {
-                fileReader.abort();
-            }
-        }
-
-    }, [createPostImage]);
+        axios.get("https://localhost:44348/api/Threads/GetAllThreads").then(elem => setPosts(elem.data))
+    }, [posts]);
 
     //Створення нового поста і передача на бек
     const CreatePost = async () => {
         let formData = new FormData();
         formData.append("Topic", createPostTopic);
         formData.append("Title", createPostTitle);
-        formData.append("Date", Date.now().toString());
+        formData.append("Date", moment().format());
         formData.append("Author", createPostAuthor);
         formData.append("Message", createPostDescribtion);
         formData.append("File", createPostImage);
 
         try {
-            const res = await axios.post("", formData, {
+            const res = await axios.post("https://localhost:44348/api/Threads/CreateThread", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
@@ -161,7 +92,7 @@ function App() {
             //Рендер Post з передачею відповідних елементів
             return (
                 <div className="App">
-                    <Post ClosePost={ClosePost}  post={fullPosts.filter(elem=>elem.id===pageOpenId)[0]}></Post>
+                    <Post ClosePost={ClosePost}  postid={postIdToOpen}></Post>
                 </div>
             );
     }

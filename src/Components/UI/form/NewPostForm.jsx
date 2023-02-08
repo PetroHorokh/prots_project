@@ -25,7 +25,7 @@ const NewPostForm = (props) => {
                 <h2>Description</h2>
                 <CreatePostTextarea onChange={e => props.setCreatePostDescribtion(e.target.value)}/>
                 <h2>Image</h2>
-                <CreatePostFileInput createPostImage={props.createPostImage} setCreatePostImage={props.setCreatePostImage}/>
+                <CreatePostFileInput onChange={event => {props.setCreatePostImage(event.target.files[0])}}/>
                 <CreatePostButton onClick={props.CreatePost}>Create new thread</CreatePostButton>
             </div>
         );
