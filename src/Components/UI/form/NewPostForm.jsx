@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from "./MyForm.module.css";
 import CreatePostInput from "../input/CreatePostInput";
 import CreatePostButton from "../button/CreatePostButton";
@@ -6,6 +6,11 @@ import CreatePostTextarea from "../textarea/CreatePostTextarea";
 import CreatePostFileInput from "../input/CreatePostFileInput";
 
 const NewPostForm = (props) => {
+
+    const buttonPress = () => {
+        props.CreatePost();
+        props.setIsCreatePost(false)
+    }
 
     if(!props.isCreatePost){
         return (
@@ -26,7 +31,7 @@ const NewPostForm = (props) => {
                 <CreatePostTextarea onChange={e => props.setCreatePostDescribtion(e.target.value)}/>
                 <h2>Image</h2>
                 <CreatePostFileInput onChange={event => {props.setCreatePostImage(event.target.files[0])}}/>
-                <CreatePostButton onClick={props.CreatePost}>Create new thread</CreatePostButton>
+                <CreatePostButton onClick={() => buttonPress()}>Create new thread</CreatePostButton>
             </div>
         );
     }

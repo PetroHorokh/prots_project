@@ -28,6 +28,7 @@ const Board = (props) => {
             {/*Рендер NewPostForm з передачею елементів*/}
                 <NewPostForm
                     isCreatePost={isCreatePost}
+                    setIsCreatePost={setIsCreatePost}
 
                     setCreatePostTopic={props.setCreatePostTopic}
 
